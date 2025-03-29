@@ -1,0 +1,36 @@
+<div class="container" id="local_playlist">
+    {{> local_playlist/navbar }}
+    <h3 class="section-title all-content">
+        <a href="#" class="view-all-cont">{{#str}} allcontent, local_playlist{{/str}}</a>
+        <a href="/local/playlist/view.php?viewtype=all" class="view-all">{{#str}} viewall, local_playlist{{/str}}</a>
+    </h3>
+
+    <div id="allcontent-loading-icon" class="text-center my-4" style="display: none;">
+        <i class="fa fa-spinner fa-spin fa-2x"></i>
+    </div>
+
+    <div id="playlist-container">
+        <div id="allcontent-container" class="row"></div>
+        <div class="owl-theme">
+            <div class="owl-controls">
+                <div class="playlist-custom-nav owl-nav"></div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- My Content --}}
+    {{#isCreator}}
+        <h3 class="section-title all-content">
+            <a href="#" class="view-all-cont">{{#str}} mycontent, local_playlist{{/str}}</a>
+            <a href="/local/playlist/view.php?viewtype=mine" class="view-all">{{#str}} viewall, local_playlist{{/str}}</a>
+        </h3>
+
+        <div id="mycontent-loading-icon" class="text-center my-4" style="display: none;">
+            <i class="fa fa-spinner fa-spin fa-2x"></i>
+        </div>
+
+        <div class="playlist-container">
+            <div id="mycontent-container" class="row"></div>
+        </div>
+    {{/isCreator}}
+</div>

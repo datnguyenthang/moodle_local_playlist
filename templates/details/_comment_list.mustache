@@ -1,0 +1,80 @@
+{{#comments}}
+    <div class="comment new-comment" id="comment{{id}}">
+        <div class="avatar">{{{ user_picture }}}</div>
+        <div style="width: auto;">
+            <span class="item-fullname">{{user_fullname}}</span>
+            <span class="comment-msg" id="comment-msg-{{id}}">{{{text}}}</span>
+
+            <form class="edit-comment-form" id="edit-comment-form-{{id}}" data-commentid="{{id}}" style="display:none;">
+                <input type="hidden" value="{{id}}" name="commentid">
+                <input type="hidden" value="{{itemid}}" name="itemid">
+                <input type="hidden" value="0" name="replyid">
+
+                <textarea name="comment" class="edit-comment-text">{{{text}}}</textarea>
+            </form>
+
+            <span class="likes" data-commentid={{id}} id="likes-{{id}}">
+                {{#reactions}}
+                    {{> local_playlist/details/_reaction}}
+                {{/reactions}}
+            </span>
+            
+            <span class="actions-comment">
+                <a href="#" class="btn-replay" data-id="form-replay-{{id}}">{{#str}}reply, forum{{/str}}</a>
+            </span>
+            {{#canedit}}
+                <span class="actions-comment">
+                    <a href="#" class="edit-comment" data-commentid="{{id}}">{{#str}}edit{{/str}}</a>
+                    <a href="#" class="delete-comment" data-commentid="{{id}}">{{#str}}delete{{/str}}</a>
+                </span>
+            {{/canedit}}
+
+            <!-------------------Replies---------->
+            <div class="form-replay add-comment" id="form-replay-{{id}}" style="display: none;">
+                <form data-container="replays-{{id}}" class="form-comment" data-replyid="{{id}}">
+                    <input type="hidden" value="0" name="commentid">
+                    <input type="hidden" value="{{itemid}}" name="itemid">
+                    <input type="hidden" value="{{id}}" name="replyid">
+                    <span class="avatar d-inline-block">
+                        {{{ user_picture }}}
+                    </span>
+                    <textarea name="comment" placeholder="Add a Comment" class=""></textarea>
+                </form>
+            </div>
+            {{#replies}}
+                <div id="replies-{{id}}">
+                    <div class="comment new-comment" id="comment-{{id}}">
+                        <div class="avatar">{{{ user_picture }}}</div>
+                        <div style="width: auto;">
+                            <span class="item-fullname">{{user_fullname}}</span>
+                            <span class="comment-msg" id="comment-msg{{id}}">{{{text}}}</span>
+
+                            <form class="edit-comment-form" style="display:none;" id="edit-comment-form-{{id}}" data-commentid="{{id}}">
+                                <input type="hidden" value="{{id}}" name="commentid">
+                                <input type="hidden" value="{{itemid}}" name="itemid">
+                                <input type="hidden" value="{{id}}" name="replyid">
+                                <textarea name="comment" class="edit-comment-text">{{{text}}}</textarea>
+                            </form>
+
+                           <span class="likes" data-commentid={{id}} id="likes-{{id}}">
+                                {{#reactions}}
+                                    {{> local_playlist/details/_reaction}}
+                                {{/reactions}}
+                            </span>
+
+                            {{#canedit}}
+                                <span class="actions-comment">
+                                    <a href="#" class="edit-comment" data-commentid="{{id}}">{{#str}}edit{{/str}}</a>
+                                    <a href="#" class="delete-comment" data-commentid="{{id}}">{{#str}}delete{{/str}}</a>
+                                </span>
+                            {{/canedit}}
+                        </div>
+                    </div>
+                </div>
+            {{/replies}}
+        </div>
+    </div>
+{{/comments}}
+{{^comments}}
+    <div>{{#str}}nocomment, local_playlist{{/str}}</div>
+{{/comments}}

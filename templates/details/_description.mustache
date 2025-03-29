@@ -1,0 +1,83 @@
+<h3>{{ item.name }}</h3>
+<p class="item-description readmore">
+    {{{ item.abstract }}}
+</p>
+
+<div id="rating" class="reviews enable-rate">
+    {{> local_playlist/details/_rating}}
+</div>
+<span class="duration">  <i class="fa fa-clock-o"></i> {{ item.duration }} </span>
+<span class="noviews"> <i class="fa fa-eye"></i> {{ view }} </span>
+<span class="date"> <i class="fa fa-calendar"></i> {{ item.time_created }} </span>
+<span class="controls" style="float:right;">
+    <div class="dropdown item-actions">
+        <a class="btn dropdown-toggle-playlist" href="#" role="button" id="dropdownMenuLink-{{ item.id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-ellipsis-v"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink-{{ item.id }}">
+            <!--
+            <a href="#" style="" class="btn-assign-add-content-featured  dropdown-item  text-success" data-content="29"><i class="fa fa-star"></i>{{#str}}addtofeatured, local_playlist{{/str}}</a>
+            <span class="add-to-playlist ">
+                <a class="add-to-playlist-btnv2  dropdown-item  text-success" href="#" data-contentid="29" data-contenttype="uploadvideo"><i class="fa fa-plus-circle"></i>{{#str}}addtoplaylist, local_playlist{{/str}}</a>
+            </span>
+            -->
+            {{#isCreator}}
+                <a class="dropdown-item text-success" href="{{#is_course}}
+                                                                /course/edit.php?id={{ item.id }}
+                                                            {{/is_course}}
+                                                            {{^is_course}}
+                                                                /local/playlist/admin.php?id={{ item.id }}&show=edit&addtype={{#is_page}}page{{/is_page}}{{#is_link}}link{{/is_link}}{{#is_video}}video{{/is_video}}{{#is_file}}file{{/is_file}}
+                                                            {{/is_course}}">
+                    <i class="fas fa-edit"></i>  Edit
+                </a>
+                <a class="dropdown-item text-danger text-success" href="/local/playlist/admin.php?id={{ item.id }}&show=delete">
+                    <i class="fas fa-trash"></i>  Delete
+                </a>
+            {{/isCreator}}
+        </div>
+    </div>
+</span>
+
+<span class="assign-users">
+    <button id="button-share-item-{{ item.id }}" class="btn btn-primary" data-toggle="modal" data-target="#share-item-{{ item.id }}">
+        <i class="fa fa-share-alt"></i> {{#str}}share{{/str}}
+    </button> 
+</span>
+
+<!-- Modal -->
+<div class="modal fade" id="share-item-{{ item.id }}" tabindex="-1" aria-labelledby="share-item-{{ item.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModelLabel">Share Modal</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Share this link via</p>
+                <div class="d-flex align-items-center icons">                
+                    <a href="#" class="fs-5 d-flex align-items-center justify-content-center">
+                        <span class="fab fa-facebook-f"></span>
+                    </a>                
+                    <a href="#" class="fs-5 d-flex align-items-center justify-content-center">
+                        <span class="fab fa-twitter"></span>
+                    </a>                
+                    <a href="#" class="fs-5 d-flex align-items-center justify-content-center">
+                        <span class="fab fa-instagram"></span>
+                    </a>                
+                    <a href="#" class="fs-5 d-flex align-items-center justify-content-center">
+                        <span class="fab fa-whatsapp"></span>
+                    </a>                
+                    <a href="#" class="fs-5 d-flex align-items-center justify-content-center">
+                        <span class="fab fa-telegram-plane"></span>
+                    </a>
+                </div>
+                <p>Or copy link</p>
+                <div class="share-field d-flex align-items-center justify-content-between">
+                    <span class="fas fa-link text-center"></span>
+                    <input type="text" class="share-link" value="{{ current_link }}">
+                    <button class="button-share">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

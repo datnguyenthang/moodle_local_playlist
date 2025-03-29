@@ -1,0 +1,33 @@
+{{#is_file}}
+    <div class="item-file">
+        {{{item.file}}}
+    </div>
+{{/is_file}}
+
+{{#is_video}}
+    {{#is_external}}
+        <div class="video-container">
+            <iframe 
+                src="{{video_url}}" 
+                class="mediaplugin"
+                frameborder="0" 
+                allowfullscreen 
+                allow="autoplay; encrypted-media">
+            </iframe>
+        </div>
+    {{/is_external}}
+
+    {{#is_direct}}
+        <video id="playlist-video" class="video-js mediaplugin" controls preload="auto" width="640" height="360">
+            <source src="{{video_url}}" type="video/mp4">
+            <p>Your browser does not support HTML5 video. Please upgrade your browser.</p>
+        </video>
+    {{/is_direct}}
+{{/is_video}}
+
+{{#is_link}}
+    <div class="item-link">
+        <a href="{{item.link}}" target="_blank">{{item.link}}</a>
+    </div>
+{{/is_link}}
+

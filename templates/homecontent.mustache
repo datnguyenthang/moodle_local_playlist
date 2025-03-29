@@ -1,0 +1,37 @@
+<div id="allContentCarousel" class="owl-carousel">
+    {{#allcontents}}
+        {{> local_playlist/_item }}
+    {{/allcontents}}
+</div>
+
+
+<script>
+    //$(document).ready(function() {
+        $("#allContentCarousel").owlCarousel({
+            items: 5,
+            margin: 20,
+            loop: false,
+            nav: true,
+            //navText: ["<span class='carousel-control-prev-icon' aria-hidden='true'></span><span class='visually-hidden'>Previous</span>", "<span class='carousel-control-next-icon' aria-hidden='true'></span><span class='visually-hidden'>Next</span>"],
+            navText: [
+                '<i class="fas fa-angle-left"></i>',
+                '<i class="fas fa-angle-right"></i>'
+            ],
+            navContainer: '#playlist-container .playlist-custom-nav',
+            dots: true,
+            autoplay: false,
+            autoplayTimeout: 5000,
+            responsive:{
+                0:{
+                    items: 1
+                },
+                600:{
+                    items: 3
+                },
+                1000:{
+                    items: 5
+                }
+            }
+        });
+    //});
+</script>

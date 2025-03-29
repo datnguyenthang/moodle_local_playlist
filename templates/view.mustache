@@ -1,0 +1,23 @@
+<div class="container" id="local_playlist">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="back-title">
+                <a href="/local/playlist/" class="">
+                    <i class="fa fa-chevron-left back-icon"></i>
+                    <span>{{#str}}back{{/str}}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="local_playlist">
+        {{> local_playlist/navbar }}
+        <div id="allcontent-loading-icon" class="text-center my-4" style="display: none;">
+            <i class="fa fa-spinner fa-spin fa-2x"></i>
+        </div>
+
+        <div id="playlist-container">
+            <div id="viewall" class="row mt-2"></div>
+        </div>
+    </div>
+</div>

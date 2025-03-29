@@ -1,0 +1,28 @@
+<div class="comments-container">
+    <div class="profile-icon">
+        <a href="/local/playlist/user_content.php?userid=154" tabindex="0">
+            <span class="avatars">
+                <span class="avatar current"> {{{creator.picture}}} </span>
+            </span>
+            <span class="item-fullname  ">{{creator.fullname}}</span>
+        </a>
+    </div>
+    <hr>
+    <div class="add-comment">
+        <span id="dcomment"> <h4> {{total_comment}} {{#str}}comments, comment{{/str}}</h4></span>
+        <form data-container="comments-list" class="form-comment" data-itemid={{id}}>
+            <span class="avatar d-inline-block "> {{{user.picture}}} </span>
+            <div class="d-flex justify-content-between w-100">
+                <textarea id="dcm" placeholder="Add a Comment" name="comment" spellcheck="false" class=""></textarea>
+                <input type="hidden" value="{{itemid}}" name="itemid">
+                <input type="hidden" value="0" name="replyid">
+                <input type="hidden" value="0" name="commentid">
+                <input type="button" value="Comment" class="btn btn-primary ml-2" id="submitnewcomment">
+            </div>
+        </form>
+    </div>
+
+    <div class="comments-list" id="comments-list">
+        {{> local_playlist/details/_comment_list}}
+    </div>
+</div>

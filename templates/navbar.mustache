@@ -1,0 +1,164 @@
+<div class="d-flex justify-content-between align-items-center flex-wrap discover-bar">
+    {{#isHomePage}}
+        <div class="dropdown workspace_dropdown check-switchrole">
+            <button class="btn dropdown-toggle learningspace_active" type="button" id="dropdownMenu1" 
+                data-toggle="dropdown" aria-expanded="false" data-learningspaceid="{{ learningSpaces.0.id }}">
+                <span class="big-letter mr-2 mb-1"> {{ learningSpaces.0.first_letter }} </span>
+                <div class="up-word">
+                    <span class="name"> {{ learningSpaces.0.name }} </span>
+                </div>
+                <i class="fa fa-angle-down role" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown-menu multi-level workspaces_menu" role="menu" aria-labelledby="dropdownMenu1" style="will-change: transform;">
+                <div class="no-overflow">
+                    <p class="workspaces">{{#str}} learningspace, local_playlist {{/str}}</p>
+
+                    {{#learningSpaces}}
+                        <div class="dropdown dropdown-item1 dropdown-menu-right">
+                            <a class="dropdown-item workspace_apply" data-learningspaceid="{{ id }}" href="#" data-name="{{ name }}">
+                                <span class="big-letter mr-2">{{ first_letter }}</span>
+                                <span class="name">{{ name }}</span>
+                            </a>
+                            {{#isCreator}}
+                                <a class="btn dropdown-toggle dropdownWorkspaceMenuLink" href="#" role="button" id="dropdownWorkspaceMenuLink-{{ id }}" aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownWorkspaceMenuLink-{{ id }}" style="will-change: transform;">
+                                    <div class="dropdown-item">
+                                        <a href="#"><i class="fas fa-edit"></i>{{#str}}edit{{/str}}</a>
+                                    </div>
+                                    <div class="dropdown-item delete_workspace" data-id="{{ id }}" data-name="{{ name }}">
+                                        <a href="#"><i class="fas fa-trash"></i>{{#str}}delete{{/str}}</a>
+                                    </div>
+                                </div>
+                            {{/isCreator}}
+                        </div>
+                    {{/learningSpaces}}
+
+                    {{#isSiteadmin}}
+                        <div class="create_workspaces">
+                            <a class="dropdown-item" data-id="0" href="/local/learningspace/admin.php">
+                                <button class="btn btn-primary">{{#str}} managelearningspace, local_playlist {{/str}}</button>
+                            </a>
+                        </div>
+                    {{/isSiteadmin}}
+                </div>
+            </div>
+        </div>
+    {{/isHomePage}}
+
+    <div class="row search-radio gird-search-form">
+        <div class="search-block">
+            <div class="search-box">
+                <input class="input-search" type="text" placeholder="{{#str}}search_description, local_playlist{{/str}}" id="playlist-input-search">
+                <button id="btn-playlist-search" class="btn-search">
+                    <i class="fas fa-search"></i>
+                    <span>{{#str}} search {{/str}}</span>
+                </button>
+            </div>
+        </div>
+        <div class="radio-box">
+            <div class="lxp-container-filter dropdown">
+                <button class="btn dropdown-toggle" type="button" id="filterdropdownMenu" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-filter"></i>
+                </button>
+                <ul class="dropdown-menu-filter dropdown-menu multi-level" role="menu" aria-labelledby="filterdropdownMenu">
+                    <div class="filter-header row">
+                        <div class="col-6">
+                            <h5 class="modal-title" id="exampleModalLabel">{{#str}}filter{{/str}}</h5>
+                        </div>
+                        <div class="col-6 pr-0">
+                            <a class="filter-close-btn float-right" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="container-box p-0 mt-2">
+                        <div id="demo" class="collapse show">
+                            <div class="form-check mb-2 ps-2">
+                                <input class="form-check-input filter_check" name="type[course]" type="checkbox" id="flexCheckDefaultcourses" value="0">
+                                <label class="form-check-label cus-check" for="flexCheckDefaultcourses">Courses</label>
+                            </div>
+                            <div class="form-check mb-2 ps-2">
+                                <input class="form-check-input filter_check" name="type[video]" type="checkbox" id="flexCheckDefaultvideocount" value="2">
+                                <label class="form-check-label cus-check" for="flexCheckDefaultvideocount">Video</label>
+                            </div>
+                            <div class="form-check mb-2 ps-2">
+                                <input class="form-check-input filter_check" name="type[page]" type="checkbox" id="flexCheckDefaultarticles" value="4">
+                                <label class="form-check-label cus-check" for="flexCheckDefaultarticles">Documents</label>
+                            </div>
+                            <div class="form-check mb-2 ps-2">
+                                <input class="form-check-input filter_check" name="type[file]" type="checkbox" id="flexCheckDefaultdocuments" value="3">
+                                <label class="form-check-label cus-check" for="flexCheckDefaultdocuments">Files</label>
+                            </div>
+                            <div class="form-check mb-2 ps-2">
+                                <input class="form-check-input filter_check" name="type[link]" type="checkbox" id="flexCheckDefaultdocuments" value="1">
+                                <label class="form-check-label cus-check" for="flexCheckDefaultdocuments">Link</label>
+                            </div>
+                            <div class="form-check ps-2">
+                                <input class="form-check-input filter_check" name="type[playlist]" type="checkbox" id="flexCheckDefaultplaylists" value="-1">
+                                <label class="form-check-label cus-check mb-0" for="flexCheckDefaultplaylists">Playlist</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mb-2 mt-2">
+                        <button id="apply-filter" class="btn btn-primary mb-2">Apply Filter</button>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {{#isHomePage}}
+        {{#isCreator}}
+            <div class="add_playlist_btn h-100 mb-1">
+                <button class="add-btn btn btn-primary dropdown-toggle btn-add" id="addContentButton" data-toggle="modal" data-target="#addContentModal">Add Content</button> 
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="addContentModal" tabindex="-1" aria-labelledby="addContentModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addContentModalLabel">{{#str}}addnewcontent, local_playlist{{/str}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body pt-0 pb-0">
+                            <div class="row text-center">
+                                <div class="column content-list" style="">
+                                    <a class="dropdown-item" href="/local/playlist/admin.php?show=add&addtype=page">
+                                        <i class="fas fa-file-alt"></i>
+                                        <p class="mt-2">{{#str}}page{{/str}}</p>
+                                    </a>
+                                </div>
+                                <div class="column content-list" style="">
+                                    <a class="dropdown-item" href="/local/playlist/admin.php?show=add&addtype=url">
+                                        <i class="fas fa-link"></i>
+                                        <p class="mt-2">{{#str}}link, local_playlist{{/str}}</p>
+                                    </a>
+                                </div>
+                                <div class="column content-list" style="">
+                                    <a class="dropdown-item" href="/local/playlist/admin.php?show=add&addtype=video">
+                                        <i class="fas fa-video"></i>
+                                        <p class="mt-2">{{#str}}video, local_playlist{{/str}}</p></p>
+                                    </a>
+                                </div>
+                                <div class="column content-list" style="">
+                                    <a class="dropdown-item" href="/local/playlist/admin.php?show=add&addtype=file">
+                                        <i class="fas fa-file"></i>
+                                        <p class="mt-2">{{#str}}file{{/str}}</p>
+                                    </a>
+                                </div>
+                                <div class="column content-list" style="">
+                                    <a class="dropdown-item" href="/local/course_templates/index.php?cid=1&category=0">
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                        <p class="mt-2">{{#str}}course{{/str}}</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/isCreator}}
+    {{/isHomePage}}
+</div>

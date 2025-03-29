@@ -1,0 +1,111 @@
+<div class="item">
+    <div class="carditem">
+        <div>
+            <a href="{{ detail_link }}">
+                <div class="carditem__body">
+                    <div class="">
+                        {{#previewimageurl}}
+                            <div class="image">
+                                <img src="{{previewimageurl}}" class="" alt="{{title}}">
+                                <div class="videoicon"></div>
+                                <span class="duration"><i class="fa fa-clock-o"></i> {{ reading_time }}</span>
+                            </div>
+                        {{/previewimageurl}}
+                        {{^previewimageurl}}
+                            <div class="image" style="background: lightgreen;">
+                                <p>{{name}}</p>
+                                <span class="duration"><i class="fa fa-clock-o"></i> {{ reading_time }}</span>
+                            </div>
+                        {{/previewimageurl}}
+                        <div class="carditem__title font-weight-bold" title="{{name}}">
+                            <h5>{{name}}</h5>
+                        </div>
+                        <div class="carditem__creator font-weight-bold">
+                            <div class="flex-box">
+                                <div class="creator-f">
+                                    {{created_by}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carditem__date font-weight-bold">
+                            <div class="flex-box">
+                                <span>{{time_created}}</span>
+                                <div class="reviews enable-rate">
+                                    <span class="rate">{{ rating.average }}</span>
+                                    <ul class="stars" data-itemid={{rating.itemid}} style="cursor: pointer;">
+                                        {{#rating.stars}}
+                                            <li class="str">
+                                                <i class="fa {{class}}" data-val={{data-val}}  data-orginal="fa {{class}}"></i>
+                                            </li>
+                                        {{/rating.stars}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="row carditem__footer align-items-center" >
+                            <div class="col-md-8 col-sm-12 text-left icontype">
+                                <a href="{{ detail_link }}">
+                                    <span class="type">
+                                        {{#is_page}}
+                                            <i class="fas fa-newspaper"></i>
+                                            <span style="line-height: 1.4">Page</span>
+                                        {{/is_page}}
+                                        {{#is_link}}
+                                            <i class="fas fa-link"></i>
+                                            <span style="line-height: 1.4">Link</span>
+                                        {{/is_link}}
+                                        {{#is_video}}
+                                            <i class="fas fa-video"></i>
+                                            <span style="line-height: 1.4">Video</span>
+                                        {{/is_video}}
+                                        {{#is_file}}
+                                            <i class="fas fa-file"></i>
+                                            <span style="line-height: 1.4">File</span>
+                                        {{/is_file}}
+                                        {{#is_course}}
+                                            <i class="fas fa-graduation-cap"></i>
+                                            <span style="line-height: 1.4">Course</span>
+                                        {{/is_course}}
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-sm-12 text-right noviews" >
+                                <span class="view"> 
+                                    <i class="fas fa-eye"></i>
+                                    <span>{{ viewcount }}</span>
+                                    
+                                    {{#is_creator}}
+                                        <span class="foolter-controls" style="float:right;">
+                                            <div class="dropdown item-actions btn-group dropup" >
+                                                <a class="btn dropdown-toggle-playlist" href="#" role="button" id="dropdownMenuLink-{{id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </a>
+                                
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink-{{id}}" >
+                                                    <a class="dropdown-item text-success" href="{{#is_course}}
+                                                                                                    /course/edit.php?id={{id}}
+                                                                                                {{/is_course}}
+                                                                                                {{^is_course}}
+                                                                                                    /local/playlist/admin.php?id={{id}}&show=edit&addtype={{#is_page}}page{{/is_page}}{{#is_link}}link{{/is_link}}{{#is_video}}video{{/is_video}}{{#is_file}}file{{/is_file}}
+                                                                                                {{/is_course}}">
+                                                        <i class="fas fa-edit"></i>  Edit
+                                                    </a>
+                                                    <a class="dropdown-item text-danger text-success" href="/local/playlist/admin.php?id={{id}}&show=delete">
+                                                        <i class="fas fa-trash"></i>  Delete
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </span> 
+                                    {{/is_creator}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

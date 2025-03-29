@@ -1,0 +1,10 @@
+<div class="reviews enable-rate">
+    <span class="rate">{{ rating.average }}</span>
+    <ul class="stars" data-itemid={{rating.itemid}} style="cursor: pointer;">
+        {{#rating.stars}}
+            <li class="str">
+                <i class="fa {{class}}" data-val={{data-val}}  data-orginal="fa {{class}}"></i>
+            </li>
+        {{/rating.stars}}
+    </ul>
+</div>
